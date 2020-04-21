@@ -187,7 +187,7 @@ class WearAHat {
         }
         //const hatRecord = HatDatabase[hatId];
         //get a random name from the list
-        const nameList = ['asdf', 'asdf', 'Snow White', 'Snoopy', 'Scooby Doo',
+        const nameList = ['Snow White', 'Snoopy', 'Scooby Doo',
             'John Wayne', 'Anne Hathaway', 'Duke Ellington', 'Madonna', 'Superman',
             'Batman', 'Robin', 'George Washington', 'Abraham Lincoln', 'Thomas Edison',
             'Benjamin Franklin', 'Brittany Spears', 'Cinderella', 'Sleeping Beauty', 'Billy Joel',
