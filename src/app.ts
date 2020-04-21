@@ -248,7 +248,7 @@ export default class WearAHat {
 					}
 				},
 				text: {
-					contents: nameList[num], //"Mona Lisa",
+					contents: nameList[num],
 					anchor: TextAnchorLocation.MiddleCenter,
 					color: { r: 30 / 255, g: 206 / 255, b: 213 / 255 },
 					height: 0.3
