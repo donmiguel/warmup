@@ -1,4 +1,4 @@
-Displays a menu of hats that avatars can wear. Showcases avatar attachments.
+Displays a random name over the head of avatars. Showcases avatar attachments.
 
 ## Editing
 
@@ -16,4 +16,8 @@ Displays a menu of hats that avatars can wear. Showcases avatar attachments.
 
 ## Attribution
 
-Hat models taken from a sample in the previous AltspaceVR SDK.
+The underlying sources are taken from the hat models taken from a sample in the previous AltspaceVR SDK.
+
+## Hosting
+
+<a href="https://www.openode.io/">Cloud hosted on opeNode.io</a>
