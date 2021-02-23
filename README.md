@@ -1,5 +1,4 @@
-Displays a random name over the head of avatars. Showcases avatar attachments.
-
+The following project is a learning game in Virtual Realitiy (VR) based on AltspaceVR. The game displays a random name over the head of avatars.
 ## Editing
 
 * Open this folder in VSCode.
