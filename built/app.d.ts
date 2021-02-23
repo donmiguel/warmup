@@ -41,5 +41,6 @@ export default class WearAHat {
      * @param userId The id of the user we will attach the hat to.
      */
     private wearHat;
+    private removeHats;
 }
 //# sourceMappingURL=app.d.ts.map

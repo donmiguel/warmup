@@ -30,7 +30,8 @@ class WearAHat {
         this.baseUrl = baseUrl;
         this.prefabs = {};
         // Container for instantiated hats.
-        this.attachedHats = {};
+        // private attachedHats: { [key: string]: MRESDK.Actor } = {};
+        this.attachedHats = new Map();
         this.assets = new MRESDK.AssetContainer(context);
         // Hook the context events we're interested in.
         this.context.onStarted(() => this.started());
@@ -52,9 +53,10 @@ class WearAHat {
     userLeft(user) {
         // If the user was wearing a hat, destroy it. Otherwise it would be
         // orphaned in the world.
-        if (this.attachedHats[user.id])
-            this.attachedHats[user.id].destroy();
-        delete this.attachedHats[user.id];
+        if (this.attachedHats.has(user.id)) {
+            this.attachedHats.get(user.id).destroy();
+        }
+        this.attachedHats.delete(user.id);
     }
     /**
      * Show a menu of hat selections.
@@ -65,51 +67,13 @@ class WearAHat {
         let y = 0.5;
         // Create menu button
         const buttonMesh = this.assets.createBoxMesh('button', 0.3, 0.3, 0.01);
-        // Loop over the hat database, creating a menu item for each entry.
-        /*
-        for (const hatId of Object.keys(HatDatabase)) {
-            // Create a clickable button.
-            const button = MRESDK.Actor.Create(this.context, {
-                actor: {
-                    parentId: menu.id,
-                    name: hatId,
-                    appearance: { meshId: buttonMesh.id },
-                    collider: { geometry: { shape: 'auto' } },
-                    transform: {
-                        local: { position: { x: 0, y, z: 0 } }
-                    }
-                }
-            });
-
-            // Set a click handler on the button.
-            button.setBehavior(MRESDK.ButtonBehavior)
-                .onClick(user => this.wearHat(hatId, user.id));
-
-            // Create a label for the menu entry.
-            MRESDK.Actor.Create(this.context, {
-                actor: {
-                    parentId: menu.id,
-                    name: 'label',
-                    text: {
-                        contents: HatDatabase[hatId].displayName,
-                        height: 0.5,
-                        anchor: MRESDK.TextAnchorLocation.MiddleLeft
-                    },
-                    transform: {
-                        local: { position: { x: 0.5, y, z: 0 } }
-                    }
-                }
-            });
-            y = y + 0.5;
-        }
-        */
         // Create a clickable button.
         const button = MRESDK.Actor.Create(this.context, {
             actor: {
                 parentId: menu.id,
                 name: "Get a card",
                 appearance: { meshId: buttonMesh.id },
-                collider: { geometry: { shape: 'auto' } },
+                collider: { geometry: { shape: MRESDK.ColliderType.Auto } },
                 transform: {
                     local: { position: { x: 0, y, z: 0 },
                         scale: { x: 2, y: 2, z: 2 } },
@@ -180,11 +144,7 @@ class WearAHat {
      */
     wearHat(userId) {
         // If the user is wearing a hat, destroy it.
-        if (this.attachedHats[userId]) {
-            this.attachedHats[userId].destroy();
-            delete this.attachedHats[userId];
-            return;
-        }
+        this.removeHats(this.context.user(userId));
         //const hatRecord = HatDatabase[hatId];
         const nameList = ['Single Case Study', 'Multiple Case Study', 'Action Design Research', 'Kuechler & Vaishnavi',
             'Peffers et al.', 'Field Experiment', 'Laboratory Experiment', 'Design Science Research', 'Literature Review',
@@ -203,7 +163,7 @@ class WearAHat {
                         'Big Data', 'E Commerce', 'Social Systems'];
         */
         const num = Math.floor(Math.random() * (nameList.length + 1));
-        this.attachedHats[userId] = MRESDK.Actor.Create(this.context, {
+        this.attachedHats.set(userId, MRESDK.Actor.Create(this.context, {
             actor: {
                 name: 'Text',
                 transform: {
@@ -224,7 +184,13 @@ class WearAHat {
                 }
                 //exclusiveToUser: userId
             }
-        });
+        }));
+    }
+    removeHats(user) {
+        if (this.attachedHats.has(user.id)) {
+            this.attachedHats.get(user.id).destroy();
+        }
+        this.attachedHats.delete(user.id);
     }
 }
 exports.default = WearAHat;
