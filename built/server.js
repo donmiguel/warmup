@@ -17,7 +17,7 @@ process.on('unhandledRejection', reason => console.log('unhandledRejection', rea
 dotenv_1.default.config();
 // Start listening for connections, and serve static files
 const server = new mixed_reality_extension_sdk_1.WebHost({
-    // baseUrl: 'http://<ngrok-id>.ngrok.io',
+    baseUrl: 'https://90d88e569e51.ngrok.io',
     baseDir: path_1.resolve(__dirname, '../public')
 });
 // Handle new application sessions

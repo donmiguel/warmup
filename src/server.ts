@@ -16,9 +16,10 @@ dotenv.config();
 
 // Start listening for connections, and serve static files
 const server = new WebHost({
-	// baseUrl: 'http://<ngrok-id>.ngrok.io',
+	baseUrl: 'https://90d88e569e51.ngrok.io',
 	baseDir: resolvePath(__dirname, '../public')
 });
 
 // Handle new application sessions
 server.adapter.onConnection(context => new App(context, server.baseUrl));
+

@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.deploySubpath": ".",
+    "appService.defaultWebAppToDeploy": "/subscriptions/8e478039-d5ca-446b-9ab8-af79e3833bcb/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/warumupgame"
+}

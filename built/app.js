@@ -140,7 +140,7 @@ class WearAHat {
                 parentId: menu.id,
                 name: 'label',
                 text: {
-                    contents: ''.padStart(8, ' ') + "Play 'Who am I'",
+                    contents: ''.padStart(8, ' ') + "Play Card Game",
                     height: 0.8,
                     anchor: MRESDK.TextAnchorLocation.MiddleCenter,
                     color: MRESDK.Color3.Yellow()
@@ -162,11 +162,11 @@ class WearAHat {
         return Promise.all(Object.keys(HatDatabase).map(hatId => {
             const hatRecord = HatDatabase[hatId];
             if (hatRecord.resourceName) {
-                return this.assets.loadGltf(`${this.baseUrl}/${hatRecord.resourceName}`)
+                return this.assets.loadGltf(hatRecord.resourceName)
                     .then(assets => {
                     this.prefabs[hatId] = assets.find(a => a.prefab !== null);
                 })
-                    .catch(e => console.error(e));
+                    .catch(e => MRESDK.log.error("app", e));
             }
             else {
                 return Promise.resolve();
@@ -186,17 +186,22 @@ class WearAHat {
             return;
         }
         //const hatRecord = HatDatabase[hatId];
-        //get a random name from the list
-        const nameList = ['Snow White', 'Snoopy', 'Scooby Doo',
-            'John Wayne', 'Anne Hathaway', 'Duke Ellington', 'Madonna', 'Superman',
-            'Batman', 'Robin', 'George Washington', 'Abraham Lincoln', 'Thomas Edison',
-            'Benjamin Franklin', 'Brittany Spears', 'Cinderella', 'Sleeping Beauty', 'Billy Joel',
-            'Albert Einstein', 'Richard Nixon', 'Arnold Schwarzenegger', 'Dora the Explorer',
-            'Elmo/Big Bird', 'Howard Stern', 'Donald Trump', 'Rosie O’Donnell', 'Oprah Winfrey',
-            'Helen of Troy', 'Helen Keller', 'Cleopatra', 'Queen Elizabeth', 'Demi Moore', 'Angelina Jolie', 'Bill Clinton',
-            'Hillary Clinton', 'Bill Cosby', 'George Clooney', 'Rachael Ray',
-            'Martha Stewart', 'Magic Johnson', 'Dennis Miller', 'Michael Jackson', 'Brad Pitt', 'John Lennon', 'Elvis',
-            'Tom Sawyer', 'Napoleon', 'Cleopatra', 'Joan of Arc', 'SpongeBob', 'Ellen DeGeneres', 'Simon Cowell', 'George Bush'];
+        const nameList = ['Single Case Study', 'Multiple Case Study', 'Action Design Research', 'Kuechler & Vaishnavi',
+            'Peffers et al.', 'Field Experiment', 'Laboratory Experiment', 'Design Science Research', 'Literature Review',
+            'Simulation', 'Survey Study', 'Grounded Theory', 'Ethnography', 'Delphi Study', 'Archival Research'];
+        /*
+        const nameList = ['Problem Space', 'Solution Space', 'Ill-structured problem', 'rational problem-solving', 'Rational Agents', 'Agent based modeling', 'NetLogo',
+                          'Acting Autonomously', 'Human-Machine Design ', 'Autonomous Design Tools', 'Embedded Design Model', 'Connectionist Approaches', 'The Frame Problem',
+                          'Double-loop Learning', 'Triple-Loop Learning'];
+        */
+        /*
+        const nameList = ['Waterfall Model', 'Vertical market', 'Horizontal market', 'Procurement Process', 'B2B E-Commerce', 'Prototyping', 'TAM',
+                        'Agile Projectmanagement Model', 'Building Information Systems', 'Process Oriented Organization', 'Scope of GDPR',
+                        'Task Technology Fit', 'Process Innovation', 'Scum Model', 'Porters five forces', 'ERP', 'AI-Powered Organization', 'Building IS cycle',
+                        'Digital Natives ', 'Cultural Diversity', 'Digital Natives', 'Business Model Innovation', 'Product Innovation', 'Levels of Culture',
+                        'Types of Strategies', 'Gartner Hype Cycle', 'Waterfall Model', 'Change Management', 'SAP', 'Kano Model', 'Scrum',
+                        'Big Data', 'E Commerce', 'Social Systems'];
+        */
         const num = Math.floor(Math.random() * (nameList.length + 1));
         this.attachedHats[userId] = MRESDK.Actor.Create(this.context, {
             actor: {
