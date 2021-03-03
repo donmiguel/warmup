@@ -16,7 +16,3 @@ The following project is a learning game in Virtual Realitiy (VR) based on Altsp
 ## Attribution
 
 The underlying sources are taken from the hat models taken from a sample in the previous AltspaceVR SDK.
-
-## Hosting
-
-<a href="https://www.openode.io/">Cloud hosted on opeNode.io</a>
