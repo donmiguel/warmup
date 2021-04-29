@@ -188,21 +188,6 @@ export default class WearAHat {
 		'Simulation', 'Survey Study', 'Grounded Theory', 'Ethnography', 'Delphi Study', 'Archival Research'];
 		
 
-		/*
-		const nameList = ['Problem Space', 'Solution Space', 'Ill-structured problem', 'rational problem-solving', 'Rational Agents', 'Agent based modeling', 'NetLogo',
-						  'Acting Autonomously', 'Human-Machine Design ', 'Autonomous Design Tools', 'Embedded Design Model', 'Connectionist Approaches', 'The Frame Problem',
-						  'Double-loop Learning', 'Triple-Loop Learning'];
-		*/
-		
-		/*
-		const nameList = ['Waterfall Model', 'Vertical market', 'Horizontal market', 'Procurement Process', 'B2B E-Commerce', 'Prototyping', 'TAM', 
-						'Agile Projectmanagement Model', 'Building Information Systems', 'Process Oriented Organization', 'Scope of GDPR',
-						'Task Technology Fit', 'Process Innovation', 'Scum Model', 'Porters five forces', 'ERP', 'AI-Powered Organization', 'Building IS cycle',
-						'Digital Natives ', 'Cultural Diversity', 'Digital Natives', 'Business Model Innovation', 'Product Innovation', 'Levels of Culture',
-						'Types of Strategies', 'Gartner Hype Cycle', 'Waterfall Model', 'Change Management', 'SAP', 'Kano Model', 'Scrum',
-						'Big Data', 'E Commerce', 'Social Systems'];
-		*/
-
 		const num = Math.floor(Math.random() * (nameList.length + 1));
 
 		this.attachedHats.set(userId, MRESDK.Actor.Create(this.context, {
